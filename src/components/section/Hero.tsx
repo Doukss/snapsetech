@@ -3,9 +3,12 @@ import LightPillar from "@/components/ui/LightPillar";
 
 export default function Hero() {
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-black">
-      <div className="absolute inset-0 w-full h-screen">
-        <div style={{ width: "100%", height: "600px", position: "relative" }}>
+    <section
+      id="accueil"
+      className="relative flex min-h-screen w-full overflow-hidden bg-black"
+    >
+      <div className="absolute inset-0 h-screen w-full">
+        <div style={{ width: "100%", height: "100%", position: "relative" }}>
           <LightPillar
             topColor="#5227FF"
             bottomColor="#FF9FFC"
@@ -23,35 +26,30 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 py-16 text-center text-white">
-        {/* NOM */}
-        <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-extrabold mb-4 leading-tight">
-          Malick Mbodji
+      <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-4 py-52 text-center text-white">
+        <h1 className="mb-4 font-mono text-4xl sm:text-6xl md:text-8xl lg:text-9xl">
+          SnapseTech
         </h1>
 
-        {/* TITRE */}
-        <p className="mt-2 text-sm sm:text-base md:text-xl font-semibold max-w-xl">
-          Développeur Full Stack · Architecte SaaS · Créateur d’expériences
-          digitales
+        <p className="mt-2 max-w-xl text-sm font-semibold sm:text-base md:text-xl">
+          Votre passage au numerique, en toute simplicite.
         </p>
 
-        {/* DESCRIPTION */}
-        <p className="mt-6 max-w-xl md:max-w-2xl text-sm sm:text-base md:text-xl font-light leading-relaxed">
-          Je transforme des idées complexes en expériences web fluides —
-          innovation et performance au service de votre vision.
+        <p className="mt-6 max-w-xl text-sm font-medium leading-relaxed md:max-w-2xl sm:text-base md:text-xl">
+          Avec SnapseTech, dites adieu a la complexite technique. On vous
+          accompagne avec des outils sur mesure pour digitaliser votre activite
+          simplement.
         </p>
 
-        {/* BOUTONS */}
-        <div className="mt-8 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-          <button className="w-full sm:w-auto px-6 py-3 rounded-lg bg-white text-black font-extrabold hover:scale-105 transition">
-            Voir mes projets →
-          </button>
-
-          <button className="w-full sm:w-auto px-6 py-3 rounded-lg border border-gray-600 hover:bg-white/10 transition">
-            Me contacter
-          </button>
+        <div className="mt-8 text-2xl flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
+          <a
+            href="#projets"
+            className="w-full rounded-lg bg-white px-6 py-3 text-center font-medium text-black transition hover:scale-105 sm:w-auto"
+          >
+            Commencer maintenant
+          </a>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
