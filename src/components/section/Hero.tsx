@@ -26,7 +26,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-4 py-52 text-center text-white">
+      <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-4 py-44 text-center text-white">
         <h1 className="mb-4 font-mono text-4xl sm:text-6xl md:text-8xl lg:text-9xl">
           SnapseTech
         </h1>
@@ -41,7 +41,7 @@ export default function Hero() {
           simplement.
         </p>
 
-        <div className="mt-8 text-xl flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
+        <div className="mt-8 text-xs flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
           <a
             href="#contact"
             className="w-full rounded-lg bg-white px-6 py-3 text-center font-medium text-black transition hover:scale-105 sm:w-auto"
