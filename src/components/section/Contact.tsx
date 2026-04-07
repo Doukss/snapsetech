@@ -1,4 +1,5 @@
 import { Mail, MapPin, Phone } from "lucide-react";
+import ContactForm from "@/components/section/ContactForm";
 
 const contactCards = [
   {
@@ -70,58 +71,7 @@ export default function Contact() {
           </div>
         </div>
 
-        <div className="rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(16,185,129,0.12),rgba(255,255,255,0.05))] p-8 backdrop-blur-sm sm:p-10">
-          <div className="grid gap-5 sm:grid-cols-2">
-            <label className="block">
-              <span className="text-sm text-white/65">Nom</span>
-              <input
-                type="text"
-                placeholder="Votre nom"
-                className="mt-2 w-full rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-emerald-400/40"
-              />
-            </label>
-
-            <label className="block">
-              <span className="text-sm text-white/65">Entreprise</span>
-              <input
-                type="text"
-                placeholder="Nom de votre entreprise"
-                className="mt-2 w-full rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-emerald-400/40"
-              />
-            </label>
-
-            <label className="block sm:col-span-2">
-              <span className="text-sm text-white/65">Email</span>
-              <input
-                type="email"
-                placeholder="vous@entreprise.com"
-                className="mt-2 w-full rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-emerald-400/40"
-              />
-            </label>
-
-            <label className="block sm:col-span-2">
-              <span className="text-sm text-white/65">Votre besoin</span>
-              <textarea
-                rows={6}
-                placeholder="Expliquez-nous votre projet, vos objectifs ou les problemes a resoudre."
-                className="mt-2 w-full rounded-[1.5rem] border border-white/10 bg-black/25 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-emerald-400/40"
-              />
-            </label>
-          </div>
-
-          <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <p className="max-w-md text-sm leading-6 text-white/55">
-              Reponse sous 24h ouvrables. Nous pouvons demarrer par un cadrage
-              rapide et sans engagement.
-            </p>
-            <a
-              href="mailto:contact@snapsetech.com?subject=Demande%20de%20contact%20Snapsetech"
-              className="inline-flex rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:scale-[1.02]"
-            >
-              Envoyer une demande
-            </a>
-          </div>
-        </div>
+        <ContactForm />
       </div>
     </section>
   );

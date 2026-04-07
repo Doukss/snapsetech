@@ -133,6 +133,7 @@ export default function Projets() {
 
               return (
                 <button
+                  type="button"
                   key={category.value}
                   onClick={() => setActiveCategory(category.value)}
                   className={`rounded-full border px-5 py-2.5 text-sm font-semibold transition-all duration-300 ${
@@ -215,7 +216,12 @@ export default function Projets() {
                     ))}
                   </div>
 
-                  <button className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-300 transition hover:gap-3 hover:text-emerald-200">
+                  <a
+                    href="https://mosaik-front.vercel.app/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-300 transition hover:gap-3 hover:text-emerald-200"
+                  >
                     Voir le projet
                     <svg
                       className="h-4 w-4"
@@ -231,7 +237,7 @@ export default function Projets() {
                         d="M9 5l7 7-7 7"
                       />
                     </svg>
-                  </button>
+                  </a>
                 </div>
               </motion.article>
             ))}

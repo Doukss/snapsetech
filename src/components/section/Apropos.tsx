@@ -50,7 +50,7 @@ export default function APropos() {
 
             <div className="mt-8 flex flex-wrap gap-4">
               <a
-                href="#projets"
+                href="#projets-showcase"
                 className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:scale-[1.02]"
               >
                 Decouvrir nos projets
@@ -78,7 +78,7 @@ export default function APropos() {
               <p className="text-xs uppercase tracking-[0.25em] text-white/55">
                 Depuis
               </p>
-              <p className="mt-1 text-lg font-semibold text-white">2024</p>
+              <p className="mt-1 text-lg font-semibold text-white">2022</p>
             </div>
           </div>
         </div>
@@ -95,7 +95,7 @@ export default function APropos() {
           ))}
         </div>
 
-        <div id="projets" className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-6 lg:grid-cols-3">
           {valeurs.map((valeur) => (
             <article
               key={valeur.title}
@@ -112,27 +112,7 @@ export default function APropos() {
           ))}
         </div>
 
-        {/* <div
-          id="contact"
-          className="rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.12),rgba(255,255,255,0.04))] px-6 py-10 text-center backdrop-blur-sm sm:px-10"
-        >
-          <p className="text-sm uppercase tracking-[0.3em] text-white/50">
-            Contact
-          </p>
-          <h3 className="mt-4 text-3xl font-semibold sm:text-4xl">
-            Pret a construire quelque chose de solide ?
-          </h3>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-white/70 sm:text-lg">
-            Nous vous aidons a transformer une idee, un besoin ou un process en
-            solution digitale concrete.
-          </p>
-          <a
-            href="mailto:contact@snapsetech.com"
-            className="mt-8 inline-flex rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:scale-[1.02]"
-          >
-            contact@snapsetech.com
-          </a>
-        </div> */}
+        
       </div>
     </section>
   );

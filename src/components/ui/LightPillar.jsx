@@ -64,9 +64,19 @@ const LightPillar = ({
   const mouseRef = useRef(new THREE.Vector2(0, 0));
   const timeRef = useRef(0);
   const rotationSpeedRef = useRef(rotationSpeed);
-  const [webGLSupported, setWebGLSupported] = useState(() =>
-    typeof document === 'undefined' ? true : detectWebGLSupport(),
-  );
+  const [webGLSupported, setWebGLSupported] = useState(true);
+
+  useEffect(() => {
+    if (detectWebGLSupport()) return;
+
+    const fallbackTimeout = window.setTimeout(() => {
+      setWebGLSupported(false);
+    }, 0);
+
+    return () => {
+      window.clearTimeout(fallbackTimeout);
+    };
+  }, []);
 
   useEffect(() => {
     if (!containerRef.current || !webGLSupported) return;

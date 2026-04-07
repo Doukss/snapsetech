@@ -6,7 +6,7 @@ import { useState } from "react";
 const navItems = [
   { href: "#accueil", label: "Accueil" },
   { href: "#apropos", label: "A propos" },
-  { href: "#projets", label: "Les projets" },
+  { href: "#projets-showcase", label: "Les projets" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -48,7 +48,11 @@ export default function Navbar() {
 
         {/* Menu hamburger mobile */}
         <button
+          type="button"
           onClick={() => setIsOpen(!isOpen)}
+          aria-expanded={isOpen}
+          aria-controls="mobile-menu"
+          aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
           className="flex flex-col gap-1.5 sm:hidden"
         >
           <span
@@ -71,6 +75,7 @@ export default function Navbar() {
 
       {/* Menu mobile déroulant */}
       <div
+        id="mobile-menu"
         className={`absolute left-4 right-4 top-[88px] overflow-hidden rounded-2xl border border-white/15 bg-black/80 backdrop-blur-xl transition-all duration-300 sm:hidden ${
           isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
