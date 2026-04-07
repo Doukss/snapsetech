@@ -112,7 +112,7 @@ export default function APropos() {
           ))}
         </div>
 
-        <div
+        {/* <div
           id="contact"
           className="rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.12),rgba(255,255,255,0.04))] px-6 py-10 text-center backdrop-blur-sm sm:px-10"
         >
@@ -132,7 +132,7 @@ export default function APropos() {
           >
             contact@snapsetech.com
           </a>
-        </div>
+        </div> */}
       </div>
     </section>
   );

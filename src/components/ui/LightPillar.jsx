@@ -4,6 +4,41 @@ import { useRef, useEffect, useState } from 'react';
 import * as THREE from 'three';
 import './LightPillar.css';
 
+const safelyCreateRenderer = options => {
+  const originalConsoleError = console.error;
+
+  try {
+    console.error = (...args) => {
+      const [firstArg] = args;
+      if (
+        typeof firstArg === 'string' &&
+        firstArg.includes('THREE.WebGLRenderer: A WebGL context could not be created')
+      ) {
+        return;
+      }
+
+      originalConsoleError(...args);
+    };
+
+    return new THREE.WebGLRenderer(options);
+  } finally {
+    console.error = originalConsoleError;
+  }
+};
+
+const detectWebGLSupport = () => {
+  try {
+    const canvas = document.createElement('canvas');
+    return Boolean(
+      canvas.getContext('webgl2', { failIfMajorPerformanceCaveat: true }) ||
+        canvas.getContext('webgl', { failIfMajorPerformanceCaveat: true }) ||
+        canvas.getContext('experimental-webgl', { failIfMajorPerformanceCaveat: true }),
+    );
+  } catch {
+    return false;
+  }
+};
+
 const LightPillar = ({
   topColor = '#5227FF',
   bottomColor = '#FF9FFC',
@@ -29,15 +64,9 @@ const LightPillar = ({
   const mouseRef = useRef(new THREE.Vector2(0, 0));
   const timeRef = useRef(0);
   const rotationSpeedRef = useRef(rotationSpeed);
-  const [webGLSupported, setWebGLSupported] = useState(true);
-
-  useEffect(() => {
-    const canvas = document.createElement('canvas');
-    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-    if (!gl) {
-      setWebGLSupported(false);
-    }
-  }, []);
+  const [webGLSupported, setWebGLSupported] = useState(() =>
+    typeof document === 'undefined' ? true : detectWebGLSupport(),
+  );
 
   useEffect(() => {
     if (!containerRef.current || !webGLSupported) return;
@@ -74,7 +103,7 @@ const LightPillar = ({
 
     let renderer;
     try {
-      renderer = new THREE.WebGLRenderer({
+      renderer = safelyCreateRenderer({
         antialias: false,
         alpha: true,
         powerPreference: effectiveQuality === 'high' ? 'high-performance' : 'low-power',
@@ -82,8 +111,10 @@ const LightPillar = ({
         stencil: false,
         depth: false
       });
-    } catch (error) {
-      setWebGLSupported(false);
+    } catch {
+      window.setTimeout(() => {
+        setWebGLSupported(false);
+      }, 0);
       return;
     }
 
@@ -307,7 +338,19 @@ const LightPillar = ({
       geometryRef.current = null;
       rafRef.current = null;
     };
-  }, [webGLSupported, quality]);
+  }, [
+    webGLSupported,
+    quality,
+    topColor,
+    bottomColor,
+    intensity,
+    interactive,
+    glowAmount,
+    pillarWidth,
+    pillarHeight,
+    noiseIntensity,
+    pillarRotation
+  ]);
 
   useEffect(() => {
     rotationSpeedRef.current = rotationSpeed;
@@ -370,8 +413,17 @@ const LightPillar = ({
 
   if (!webGLSupported) {
     return (
-      <div className={`light-pillar-fallback ${className}`} style={{ mixBlendMode }}>
-        WebGL not supported
+      <div
+        className={`light-pillar-fallback ${className}`}
+        style={{
+          mixBlendMode,
+          '--pillar-top-color': topColor,
+          '--pillar-bottom-color': bottomColor
+        }}
+      >
+        <div className="light-pillar-fallback__beam" />
+        <div className="light-pillar-fallback__glow light-pillar-fallback__glow--top" />
+        <div className="light-pillar-fallback__glow light-pillar-fallback__glow--bottom" />
       </div>
     );
   }

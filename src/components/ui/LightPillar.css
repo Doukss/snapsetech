@@ -4,12 +4,46 @@
   position: absolute;
   top: 0;
   left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.1);
-  color: #888;
-  font-size: 14px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 18%, color-mix(in srgb, var(--pillar-top-color) 48%, transparent), transparent 28%),
+    radial-gradient(circle at 50% 82%, color-mix(in srgb, var(--pillar-bottom-color) 48%, transparent), transparent 30%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.22));
+}
+
+.light-pillar-fallback__beam {
+  position: absolute;
+  inset: 6% 38%;
+  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--pillar-top-color) 80%, white 20%) 0%,
+    color-mix(in srgb, var(--pillar-bottom-color) 70%, transparent) 100%
+  );
+  opacity: 0.7;
+  filter: blur(30px);
+  transform: rotate(24deg) scaleY(1.2);
+}
+
+.light-pillar-fallback__glow {
+  position: absolute;
+  left: 50%;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 999px;
+  transform: translateX(-50%);
+  filter: blur(65px);
+  opacity: 0.42;
+}
+
+.light-pillar-fallback__glow--top {
+  top: -4rem;
+  background: color-mix(in srgb, var(--pillar-top-color) 75%, transparent);
+}
+
+.light-pillar-fallback__glow--bottom {
+  bottom: -5rem;
+  background: color-mix(in srgb, var(--pillar-bottom-color) 70%, transparent);
 }
 
 .light-pillar-container {
