@@ -32,15 +32,15 @@ export default function Hero({ copy }: HeroProps) {
       </div>
 
       <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-4 pb-20 pt-32 text-center text-white sm:pb-24 sm:pt-40 md:py-44">
-        <h1 className="mb-4 text-balance font-mono text-4xl leading-none sm:text-6xl md:text-8xl lg:text-9xl">
+        <h1 className="mb-4 text-balance font-mono text-5xl leading-none sm:text-6xl md:text-8xl lg:text-9xl">
           {copy.title}
         </h1>
 
-        <p className="mt-2 max-w-xl text-pretty text-sm font-semibold sm:text-base md:text-xl">
+        <p className="mt-2 max-w-xl text-pretty text-base font-semibold sm:text-base md:text-xl">
           {copy.tagline}
         </p>
 
-        <p className="mt-6 max-w-xl text-pretty text-sm font-medium leading-relaxed sm:text-base md:max-w-2xl md:text-xl">
+        <p className="mt-6 max-w-xl text-pretty text-base font-medium leading-relaxed sm:text-base md:max-w-2xl md:text-xl">
           {copy.description}
         </p>
 
