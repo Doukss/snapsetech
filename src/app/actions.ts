@@ -1,5 +1,7 @@
 "use server";
 
+import { siteDictionary, type FormDictionary } from "@/i18n/dictionaries";
+
 export type ContactFormState = {
   status: "idle" | "success" | "error";
   message: string;
@@ -11,15 +13,20 @@ const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const getTrimmedValue = (formData: FormData, key: string) =>
   String(formData.get(key) ?? "").trim();
 
+const getFormMessages = (): FormDictionary["server"] =>
+  siteDictionary.contact.form.server;
+
 export async function submitContactForm(
   _prevState: ContactFormState,
   formData: FormData,
 ): Promise<ContactFormState> {
+  const messages = getFormMessages();
+
   const honey = getTrimmedValue(formData, "website");
   if (honey) {
     return {
       status: "success",
-      message: "Merci, votre demande a bien ete recue.",
+      message: messages.honeypotAccepted,
     };
   }
 
@@ -31,25 +38,25 @@ export async function submitContactForm(
   const fieldErrors: ContactFormState["fieldErrors"] = {};
 
   if (name.length < 2) {
-    fieldErrors.name = "Indiquez votre nom complet.";
+    fieldErrors.name = messages.nameError;
   }
 
   if (company.length < 2) {
-    fieldErrors.company = "Indiquez le nom de votre entreprise.";
+    fieldErrors.company = messages.companyError;
   }
 
   if (!emailPattern.test(email)) {
-    fieldErrors.email = "Renseignez une adresse email valide.";
+    fieldErrors.email = messages.emailError;
   }
 
   if (message.length < 20) {
-    fieldErrors.message = "Decrivez votre besoin en au moins 20 caracteres.";
+    fieldErrors.message = messages.messageError;
   }
 
   if (Object.keys(fieldErrors).length > 0) {
     return {
       status: "error",
-      message: "Merci de corriger les champs signales.",
+      message: messages.fieldsError,
       fieldErrors,
     };
   }
@@ -61,8 +68,7 @@ export async function submitContactForm(
   if (!resendApiKey || !contactToEmail || !contactFromEmail) {
     return {
       status: "error",
-      message:
-        "Le formulaire n'est pas encore configure pour l'envoi. Ajoutez RESEND_API_KEY, CONTACT_TO_EMAIL et CONTACT_FROM_EMAIL dans l'environnement de deploiement.",
+      message: messages.envMissing,
     };
   }
 
@@ -99,13 +105,12 @@ export async function submitContactForm(
   if (!response.ok) {
     return {
       status: "error",
-      message:
-        "L'envoi a echoue pour le moment. Verifiez la configuration email puis reessayez.",
+      message: messages.sendFailed,
     };
   }
 
   return {
     status: "success",
-    message: "Merci, votre message a bien ete envoye. Nous revenons vers vous rapidement.",
+    message: messages.sendSuccess,
   };
 }

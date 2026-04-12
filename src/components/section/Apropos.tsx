@@ -1,31 +1,11 @@
 import Image from "next/image";
+import type { SiteDictionary } from "@/i18n/dictionaries";
 
-const stats = [
-  { value: "+50", label: "Entreprises digitalisees" },
-  { value: "+12", label: "Pays couverts" },
-  { value: "100%", label: "Satisfaction client" },
-  { value: "24/7", label: "Support disponible" },
-];
+type AProposProps = {
+  copy: SiteDictionary["apropos"];
+};
 
-const valeurs = [
-  {
-    title: "Innovation",
-    description: "Des solutions adaptees aux realites du terrain.",
-    icon: "01",
-  },
-  {
-    title: "Simplicite",
-    description: "Une technologie claire, utile et accessible.",
-    icon: "02",
-  },
-  {
-    title: "Impact",
-    description: "Des outils penses pour faire grandir votre activite.",
-    icon: "03",
-  },
-];
-
-export default function APropos() {
+export default function APropos({ copy }: AProposProps) {
   return (
     <section
       id="apropos"
@@ -35,17 +15,13 @@ export default function APropos() {
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <p className="text-sm uppercase tracking-[0.35em] text-white/45">
-              A propos
+              {copy.label}
             </p>
             <h2 className="mt-4 max-w-3xl text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
-              Digitaliser votre activite avec plus de clarte, de vitesse et de
-              serenite.
+              {copy.title}
             </h2>
             <p className="mt-6 max-w-2xl text-base leading-8 text-white/70 sm:text-lg">
-              Chez Snapsetech, nous concevons des experiences web, des outils
-              metier et des parcours digitaux simples a prendre en main. Notre
-              objectif est de transformer les besoins complexes en solutions
-              fiables, elegantes et faciles a utiliser.
+              {copy.description}
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
@@ -53,13 +29,13 @@ export default function APropos() {
                 href="#projets-showcase"
                 className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:scale-[1.02]"
               >
-                Decouvrir nos projets
+                {copy.ctaProjects}
               </a>
               <a
                 href="#contact"
                 className="rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white/85 transition hover:bg-white/10"
               >
-                Parler de votre projet
+                {copy.ctaContact}
               </a>
             </div>
           </div>
@@ -68,7 +44,7 @@ export default function APropos() {
             <div className="relative h-80 w-full overflow-hidden rounded-[1.4rem] md:h-96">
               <Image
                 src="/toph.jpg"
-                alt="Equipe Snapsetech"
+                alt={copy.imageAlt}
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
@@ -76,7 +52,7 @@ export default function APropos() {
             </div>
             <div className="absolute bottom-8 left-8 rounded-2xl border border-white/10 bg-black/60 px-4 py-3 backdrop-blur-md">
               <p className="text-xs uppercase tracking-[0.25em] text-white/55">
-                Depuis
+                {copy.sinceLabel}
               </p>
               <p className="mt-1 text-lg font-semibold text-white">2022</p>
             </div>
@@ -84,7 +60,7 @@ export default function APropos() {
         </div>
 
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-          {stats.map((stat) => (
+          {copy.stats.map((stat) => (
             <div
               key={stat.label}
               className="rounded-3xl border border-white/10 bg-white/5 px-5 py-6 text-center backdrop-blur-sm"
@@ -96,23 +72,21 @@ export default function APropos() {
         </div>
 
         <div className="grid gap-6 lg:grid-cols-3">
-          {valeurs.map((valeur) => (
+          {copy.values.map((value) => (
             <article
-              key={valeur.title}
+              key={value.title}
               className="rounded-[1.75rem] border border-white/10 bg-white/5 p-8 backdrop-blur-sm"
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-sm font-semibold text-white/80">
-                {valeur.icon}
+                {value.icon}
               </div>
-              <h3 className="mt-6 text-2xl font-semibold">{valeur.title}</h3>
+              <h3 className="mt-6 text-2xl font-semibold">{value.title}</h3>
               <p className="mt-3 text-base leading-7 text-white/65">
-                {valeur.description}
+                {value.description}
               </p>
             </article>
           ))}
         </div>
-
-        
       </div>
     </section>
   );

@@ -2,34 +2,30 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import type { SiteDictionary } from "@/i18n/dictionaries";
 
-const navItems = [
-  { href: "#accueil", label: "Accueil" },
-  { href: "#apropos", label: "A propos" },
-  { href: "#projets-showcase", label: "Les projets" },
-  { href: "#contact", label: "Contact" },
-];
+type NavbarProps = {
+  copy: SiteDictionary["navbar"];
+};
 
-export default function Navbar() {
+export default function Navbar({ copy }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-8">
       <nav className="flex w-full max-w-4xl items-center justify-between rounded-full border border-white/15 bg-black/45 px-5 py-3 shadow-[0_0_30px_rgba(0,0,0,0.35)] backdrop-blur-xl">
-        {/* Logo */}
-        <Link href="#accueil" className="flex items-center gap-2">
+        <Link href="/#accueil" className="flex items-center gap-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-green-400 to-emerald-600">
             <span className="text-sm font-bold text-white">S</span>
           </div>
           <span className="text-lg font-semibold text-white">Snapsetech</span>
         </Link>
 
-        {/* Menu desktop */}
         <ul className="hidden gap-2 text-sm text-white sm:flex sm:gap-3">
-          {navItems.map((item) => (
+          {copy.items.map((item) => (
             <li key={item.href}>
               <Link
-                href={item.href}
+                href={`/${item.href}`}
                 className="rounded-full px-4 py-2 font-medium text-white/80 transition hover:bg-white/10 hover:text-white"
               >
                 {item.label}
@@ -38,21 +34,21 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Bouton Contact desktop */}
-        <Link
-          href="#contact"
-          className="hidden rounded-full bg-[#FF006E] px-5 py-2 text-sm font-semibold text-white transition hover:from-green-600 hover:to-emerald-700 hover:shadow-lg sm:block"
-        >
-          Commencer
-        </Link>
+        <div className="hidden items-center gap-2 sm:flex">
+          <Link
+            href="/#contact"
+            className="rounded-full bg-[#FF006E] px-5 py-2 text-sm font-semibold text-white transition hover:opacity-90"
+          >
+            {copy.cta}
+          </Link>
+        </div>
 
-        {/* Menu hamburger mobile */}
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
           aria-expanded={isOpen}
           aria-controls="mobile-menu"
-          aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
+          aria-label={isOpen ? copy.closeMenu : copy.openMenu}
           className="flex flex-col gap-1.5 sm:hidden"
         >
           <span
@@ -73,18 +69,17 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Menu mobile déroulant */}
       <div
         id="mobile-menu"
         className={`absolute left-4 right-4 top-[88px] overflow-hidden rounded-2xl border border-white/15 bg-black/80 backdrop-blur-xl transition-all duration-300 sm:hidden ${
-          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          isOpen ? "max-h-[420px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <ul className="flex flex-col gap-2 p-4">
-          {navItems.map((item) => (
+          {copy.items.map((item) => (
             <li key={item.href}>
               <Link
-                href={item.href}
+                href={`/${item.href}`}
                 onClick={() => setIsOpen(false)}
                 className="block rounded-xl px-4 py-3 font-medium text-white/80 transition hover:bg-white/10 hover:text-white"
               >
@@ -94,11 +89,11 @@ export default function Navbar() {
           ))}
           <li>
             <Link
-              href="#contact"
+              href="/#contact"
               onClick={() => setIsOpen(false)}
-              className="block rounded-xl bg-[#FF006E] px-4 py-3 text-center font-semibold text-white transition hover:from-green-600 hover:to-emerald-700"
+              className="block rounded-xl bg-[#FF006E] px-4 py-3 text-center font-semibold text-white"
             >
-              Commencer
+              {copy.cta}
             </Link>
           </li>
         </ul>

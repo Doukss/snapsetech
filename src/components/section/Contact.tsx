@@ -1,28 +1,18 @@
 import { Mail, MapPin, Phone } from "lucide-react";
 import ContactForm from "@/components/section/ContactForm";
+import type { SiteDictionary } from "@/i18n/dictionaries";
 
-const contactCards = [
-  {
-    title: "Email",
-    value: "contact@snapsetech.com",
-    href: "mailto:contact@snapsetech.com",
-    icon: Mail,
-  },
-  {
-    title: "Telephone",
-    value: "+221 77 000 00 00",
-    href: "tel:+221770000000",
-    icon: Phone,
-  },
-  {
-    title: "Zone d'intervention",
-    value: "Dakar, Abidjan, Douala et a distance",
-    href: "#contact",
-    icon: MapPin,
-  },
-];
+type ContactProps = {
+  copy: SiteDictionary["contact"];
+};
 
-export default function Contact() {
+const iconMap = {
+  mail: Mail,
+  phone: Phone,
+  mapPin: MapPin,
+};
+
+export default function Contact({ copy }: ContactProps) {
   return (
     <section
       id="contact"
@@ -32,21 +22,19 @@ export default function Contact() {
         <div className="flex flex-col justify-between rounded-[2rem] border border-white/10 bg-white/[0.04] p-8 backdrop-blur-sm sm:p-10">
           <div>
             <p className="text-sm uppercase tracking-[0.35em] text-white/45">
-              Contact
+              {copy.label}
             </p>
             <h2 className="mt-4 text-4xl font-semibold leading-tight sm:text-5xl">
-              Parlons de votre prochain projet digital.
+              {copy.title}
             </h2>
             <p className="mt-6 max-w-2xl text-base leading-8 text-white/68 sm:text-lg">
-              Que vous lanciez une plateforme, un site vitrine, un outil metier
-              ou une refonte, nous pouvons vous aider a cadrer, concevoir et
-              livrer quelque chose de solide.
+              {copy.description}
             </p>
           </div>
 
           <div className="mt-10 grid gap-4">
-            {contactCards.map((item) => {
-              const Icon = item.icon;
+            {copy.cards.map((item) => {
+              const Icon = iconMap[item.icon];
 
               return (
                 <a
@@ -71,7 +59,7 @@ export default function Contact() {
           </div>
         </div>
 
-        <ContactForm />
+        <ContactForm copy={copy.form} />
       </div>
     </section>
   );

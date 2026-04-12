@@ -3,96 +3,16 @@
 import Image from "next/image";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import type { SiteDictionary } from "@/i18n/dictionaries";
 
-const projets = [
-  {
-    id: 1,
-    title: "Digitalisation d'une chaine de supermarches",
-    category: "e-commerce",
-    client: "MarchePlus Senegal",
-    description:
-      "Mise en place d'une solution de gestion des stocks et de e-commerce pour 15 magasins a travers Dakar.",
-    image:
-      "https://images.unsplash.com/photo-1567449303078-57ad995bd17e?w=800&h=600&fit=crop",
-    tags: ["E-commerce", "Gestion de stocks", "Mobile Money"],
-    results: "+40% de ventes en ligne",
-  },
-  {
-    id: 2,
-    title: "Plateforme de formation en ligne",
-    category: "edtech",
-    client: "EduTech Cote d'Ivoire",
-    description:
-      "Creation d'une plateforme LMS pour former les jeunes aux metiers du numerique.",
-    image:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop",
-    tags: ["LMS", "Video", "Certification"],
-    results: "+5000 etudiants formes",
-  },
-  {
-    id: 3,
-    title: "Application de livraison locale",
-    category: "mobile",
-    client: "QuickDeliver Cameroun",
-    description:
-      "Application mobile de livraison de repas et courses en moins de 30 minutes.",
-    image:
-      "https://images.unsplash.com/photo-1516321165247-4aa89a48be28?w=800&h=600&fit=crop",
-    tags: ["Mobile", "Geolocalisation", "Paiement integre"],
-    results: "+2000 livraisons par mois",
-  },
-  {
-    id: 4,
-    title: "CRM pour agence immobiliere",
-    category: "crm",
-    client: "ImmoPlus Mali",
-    description:
-      "Solution complete de gestion des biens, clients et transactions immobilieres.",
-    image:
-      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop",
-    tags: ["CRM", "Gestion de biens", "Reporting"],
-    results: "15h gagnees par semaine",
-  },
-  {
-    id: 5,
-    title: "Site vitrine pour artisanat local",
-    category: "web",
-    client: "Artisans d'Afrique",
-    description:
-      "Site e-commerce pour promouvoir et vendre l'artisanat local a l'international.",
-    image:
-      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop",
-    tags: ["E-commerce", "Paiement securise", "Expedition"],
-    results: "+300% de ventes export",
-  },
-  {
-    id: 6,
-    title: "Solution de telemedecine",
-    category: "healthtech",
-    client: "MediAfrica",
-    description:
-      "Plateforme de consultation a distance pour desenclaver les zones rurales.",
-    image:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop",
-    tags: ["Telemedecine", "Visioconference", "Dossier medical"],
-    results: "+10000 consultations a distance",
-  },
-];
+type ProjetsProps = {
+  copy: SiteDictionary["projets"];
+};
 
-const categories = [
-  { value: "all", label: "Tous les projets" },
-  { value: "e-commerce", label: "E-commerce" },
-  { value: "mobile", label: "Mobile" },
-  { value: "web", label: "Web" },
-  { value: "crm", label: "CRM" },
-  { value: "edtech", label: "EdTech" },
-  { value: "healthtech", label: "HealthTech" },
-];
-
-export default function Projets() {
+export default function Projets({ copy }: ProjetsProps) {
   const [activeCategory, setActiveCategory] = useState("all");
 
-  const filteredProjets = projets.filter(
+  const filteredProjets = copy.items.filter(
     (projet) => activeCategory === "all" || projet.category === activeCategory,
   );
 
@@ -115,20 +35,19 @@ export default function Projets() {
           className="mx-auto max-w-3xl text-center"
         >
           <p className="text-sm uppercase tracking-[0.35em] text-white/45">
-            Projets
+            {copy.label}
           </p>
           <h2 className="mt-4 text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
-            Des projets concrets, penses pour avoir un impact durable.
+            {copy.title}
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-white/70 sm:text-lg">
-            Nous accompagnons des entreprises africaines avec des experiences
-            digitales elegantes, efficaces et utiles sur le terrain.
+            {copy.description}
           </p>
         </motion.div>
 
         <section className="mt-12">
           <div className="flex flex-wrap justify-center gap-3">
-            {categories.map((category) => {
+            {copy.categories.map((category) => {
               const isActive = activeCategory === category.value;
 
               return (
@@ -198,7 +117,7 @@ export default function Projets() {
 
                   <div className="rounded-2xl border border-emerald-400/15 bg-emerald-500/10 p-4">
                     <p className="text-xs uppercase tracking-[0.25em] text-emerald-300/70">
-                      Resultat
+                      {copy.resultLabel}
                     </p>
                     <p className="mt-2 text-base font-semibold text-emerald-200">
                       {projet.results}
@@ -222,7 +141,7 @@ export default function Projets() {
                     rel="noreferrer"
                     className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-300 transition hover:gap-3 hover:text-emerald-200"
                   >
-                    Voir le projet
+                    {copy.viewProject}
                     <svg
                       className="h-4 w-4"
                       fill="none"
@@ -245,9 +164,7 @@ export default function Projets() {
 
           {filteredProjets.length === 0 && (
             <div className="rounded-[1.8rem] border border-dashed border-white/10 bg-white/[0.03] px-6 py-14 text-center">
-              <p className="text-white/55">
-                Aucun projet dans cette categorie pour le moment.
-              </p>
+              <p className="text-white/55">{copy.empty}</p>
             </div>
           )}
         </section>
@@ -260,20 +177,19 @@ export default function Projets() {
           className="mt-16 rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(16,185,129,0.18),rgba(255,255,255,0.04))] px-6 py-10 text-center backdrop-blur-sm sm:px-10"
         >
           <p className="text-sm uppercase tracking-[0.3em] text-white/45">
-            Collaboration
+            {copy.collabLabel}
           </p>
           <h3 className="mt-4 text-3xl font-semibold sm:text-4xl">
-            Vous avez un projet a lancer ou a moderniser ?
+            {copy.collabTitle}
           </h3>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-white/70 sm:text-lg">
-            Nous concevons des plateformes, outils metier et experiences web
-            qui restent simples a utiliser et solides a faire evoluer.
+            {copy.collabDescription}
           </p>
           <a
             href="#contact"
             className="mt-8 inline-flex rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:scale-[1.02]"
           >
-            Discutons de votre projet
+            {copy.collabCta}
           </a>
         </motion.div>
       </div>

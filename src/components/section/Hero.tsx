@@ -1,7 +1,12 @@
 import React from "react";
 import LightPillar from "@/components/ui/LightPillar";
+import type { SiteDictionary } from "@/i18n/dictionaries";
 
-export default function Hero() {
+type HeroProps = {
+  copy: SiteDictionary["hero"];
+};
+
+export default function Hero({ copy }: HeroProps) {
   return (
     <section
       id="accueil"
@@ -28,17 +33,15 @@ export default function Hero() {
 
       <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-4 py-44 text-center text-white">
         <h1 className="mb-4 font-mono text-4xl sm:text-6xl md:text-8xl lg:text-9xl">
-          SnapseTech
+          {copy.title}
         </h1>
 
         <p className="mt-2 max-w-xl text-sm font-semibold sm:text-base md:text-xl">
-          Votre passage au numerique, en toute simplicite.
+          {copy.tagline}
         </p>
 
         <p className="mt-6 max-w-xl text-sm font-medium leading-relaxed md:max-w-2xl sm:text-base md:text-xl">
-          Avec SnapseTech, dites adieu a la complexite technique. On vous
-          accompagne avec des outils sur mesure pour digitaliser votre activite
-          simplement.
+          {copy.description}
         </p>
 
         <div className="mt-8 text-xs flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
@@ -46,7 +49,7 @@ export default function Hero() {
             href="#contact"
             className="w-full rounded-lg bg-white px-6 py-3 text-center font-medium text-black transition hover:scale-105 sm:w-auto"
           >
-            Commencer maintenant
+            {copy.cta}
           </a>
         </div>
       </div>
