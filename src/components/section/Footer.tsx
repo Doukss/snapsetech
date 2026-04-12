@@ -12,8 +12,10 @@ export default function Footer({ copy }: FooterProps) {
           <p className="text-sm uppercase tracking-[0.35em] text-white/38">
             {copy.brand}
           </p>
-          <p className="mt-4 text-2xl font-semibold sm:text-3xl">{copy.title}</p>
-          <p className="mt-4 text-sm leading-7 text-white/58 sm:text-base">
+          <p className="mt-4 text-2xl font-semibold text-balance sm:text-3xl">
+            {copy.title}
+          </p>
+          <p className="mt-4 text-sm leading-7 text-pretty text-white/58 sm:text-base">
             {copy.description}
           </p>
         </div>
@@ -31,7 +33,7 @@ export default function Footer({ copy }: FooterProps) {
             ))}
           </nav>
 
-          <div className="text-sm text-white/45">
+          <div className="break-words text-sm text-white/45">
             <p>{copy.email}</p>
             <p className="mt-1">{copy.rights}</p>
           </div>

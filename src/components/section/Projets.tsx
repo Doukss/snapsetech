@@ -19,7 +19,7 @@ export default function Projets({ copy }: ProjetsProps) {
   return (
     <section
       id="projets-showcase"
-      className="relative overflow-hidden bg-[radial-gradient(circle_at_top,rgba(16,185,129,0.14),transparent_30%),linear-gradient(180deg,#040404_0%,#0a0a0a_40%,#050505_100%)] px-4 py-24 text-white sm:px-6 lg:px-8"
+      className="relative overflow-hidden bg-[radial-gradient(circle_at_top,rgba(16,185,129,0.14),transparent_30%),linear-gradient(180deg,#040404_0%,#0a0a0a_40%,#050505_100%)] px-4 py-20 text-white sm:px-6 sm:py-24 lg:px-8"
     >
       <div className="absolute inset-0 opacity-30">
         <div className="absolute left-0 top-16 h-72 w-72 rounded-full bg-emerald-500/15 blur-3xl" />
@@ -37,16 +37,16 @@ export default function Projets({ copy }: ProjetsProps) {
           <p className="text-sm uppercase tracking-[0.35em] text-white/45">
             {copy.label}
           </p>
-          <h2 className="mt-4 text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
+          <h2 className="mt-4 text-3xl font-semibold leading-tight text-balance sm:text-5xl lg:text-6xl">
             {copy.title}
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-white/70 sm:text-lg">
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-pretty text-white/70 sm:text-lg sm:leading-8">
             {copy.description}
           </p>
         </motion.div>
 
         <section className="mt-12">
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="-mx-4 flex gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0">
             {copy.categories.map((category) => {
               const isActive = activeCategory === category.value;
 
@@ -55,7 +55,7 @@ export default function Projets({ copy }: ProjetsProps) {
                   type="button"
                   key={category.value}
                   onClick={() => setActiveCategory(category.value)}
-                  className={`rounded-full border px-5 py-2.5 text-sm font-semibold transition-all duration-300 ${
+                  className={`shrink-0 rounded-full border px-5 py-2.5 text-sm font-semibold whitespace-nowrap transition-all duration-300 ${
                     isActive
                       ? "border-emerald-400/60 bg-emerald-500 text-black shadow-[0_0_30px_rgba(16,185,129,0.25)]"
                       : "border-white/10 bg-white/5 text-white/70 hover:border-white/20 hover:bg-white/10 hover:text-white"
@@ -68,7 +68,7 @@ export default function Projets({ copy }: ProjetsProps) {
           </div>
         </section>
 
-        <section className="mt-14">
+        <section className="mt-12 sm:mt-14">
           <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
             {filteredProjets.map((projet, index) => (
               <motion.article
@@ -79,7 +79,7 @@ export default function Projets({ copy }: ProjetsProps) {
                 viewport={{ once: true, amount: 0.2 }}
                 className="group overflow-hidden rounded-[1.8rem] border border-white/10 bg-white/[0.04] backdrop-blur-sm"
               >
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-56 overflow-hidden sm:h-64">
                   <Image
                     src={projet.image}
                     alt={projet.title}
@@ -100,18 +100,18 @@ export default function Projets({ copy }: ProjetsProps) {
                     ))}
                   </div>
 
-                  <div className="absolute inset-x-0 bottom-0 p-6">
-                    <p className="text-sm font-medium uppercase tracking-[0.25em] text-emerald-300/80">
+                  <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+                    <p className="text-xs font-medium uppercase tracking-[0.2em] text-emerald-300/80 sm:text-sm sm:tracking-[0.25em]">
                       {projet.client}
                     </p>
-                    <h3 className="mt-2 text-2xl font-semibold text-white">
+                    <h3 className="mt-2 text-xl font-semibold text-balance text-white sm:text-2xl">
                       {projet.title}
                     </h3>
                   </div>
                 </div>
 
-                <div className="space-y-5 p-6">
-                  <p className="text-sm leading-7 text-white/68">
+                <div className="space-y-5 p-5 sm:p-6">
+                  <p className="text-sm leading-7 text-pretty text-white/68">
                     {projet.description}
                   </p>
 
@@ -174,15 +174,15 @@ export default function Projets({ copy }: ProjetsProps) {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true, amount: 0.3 }}
-          className="mt-16 rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(16,185,129,0.18),rgba(255,255,255,0.04))] px-6 py-10 text-center backdrop-blur-sm sm:px-10"
+          className="mt-16 rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(16,185,129,0.18),rgba(255,255,255,0.04))] px-5 py-8 text-center backdrop-blur-sm sm:px-10 sm:py-10"
         >
           <p className="text-sm uppercase tracking-[0.3em] text-white/45">
             {copy.collabLabel}
           </p>
-          <h3 className="mt-4 text-3xl font-semibold sm:text-4xl">
+          <h3 className="mt-4 text-2xl font-semibold text-balance sm:text-4xl">
             {copy.collabTitle}
           </h3>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-white/70 sm:text-lg">
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-pretty text-white/70 sm:text-lg">
             {copy.collabDescription}
           </p>
           <a

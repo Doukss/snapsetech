@@ -10,9 +10,9 @@ export default function Hero({ copy }: HeroProps) {
   return (
     <section
       id="accueil"
-      className="relative flex min-h-screen w-full overflow-hidden bg-black"
+      className="relative flex min-h-[100svh] w-full overflow-hidden bg-black"
     >
-      <div className="absolute inset-0 h-screen w-full">
+      <div className="absolute inset-0 h-full w-full">
         <div style={{ width: "100%", height: "100%", position: "relative" }}>
           <LightPillar
             topColor="#5227FF"
@@ -31,23 +31,23 @@ export default function Hero({ copy }: HeroProps) {
         </div>
       </div>
 
-      <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-4 py-44 text-center text-white">
-        <h1 className="mb-4 font-mono text-4xl sm:text-6xl md:text-8xl lg:text-9xl">
+      <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-4 pb-20 pt-32 text-center text-white sm:pb-24 sm:pt-40 md:py-44">
+        <h1 className="mb-4 text-balance font-mono text-4xl leading-none sm:text-6xl md:text-8xl lg:text-9xl">
           {copy.title}
         </h1>
 
-        <p className="mt-2 max-w-xl text-sm font-semibold sm:text-base md:text-xl">
+        <p className="mt-2 max-w-xl text-pretty text-sm font-semibold sm:text-base md:text-xl">
           {copy.tagline}
         </p>
 
-        <p className="mt-6 max-w-xl text-sm font-medium leading-relaxed md:max-w-2xl sm:text-base md:text-xl">
+        <p className="mt-6 max-w-xl text-pretty text-sm font-medium leading-relaxed sm:text-base md:max-w-2xl md:text-xl">
           {copy.description}
         </p>
 
-        <div className="mt-8 text-xs flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
+        <div className="mt-8 flex w-full flex-col gap-4 text-xs sm:w-auto sm:flex-row">
           <a
             href="#contact"
-            className="w-full rounded-lg bg-white px-6 py-3 text-center font-medium text-black transition hover:scale-105 sm:w-auto"
+            className="w-full rounded-lg bg-white px-6 py-3 text-center text-sm font-medium text-black transition hover:scale-105 sm:w-auto"
           >
             {copy.cta}
           </a>

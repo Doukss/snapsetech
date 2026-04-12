@@ -12,13 +12,15 @@ export default function Navbar({ copy }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-8">
-      <nav className="flex w-full max-w-4xl items-center justify-between rounded-full border border-white/15 bg-black/45 px-5 py-3 shadow-[0_0_30px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+    <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-[calc(env(safe-area-inset-top)+0.75rem)] sm:px-4 sm:pt-8">
+      <nav className="flex w-full max-w-4xl items-center justify-between rounded-full border border-white/15 bg-black/45 px-4 py-3 shadow-[0_0_30px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:px-5">
         <Link href="/#accueil" className="flex items-center gap-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-green-400 to-emerald-600">
             <span className="text-sm font-bold text-white">S</span>
           </div>
-          <span className="text-lg font-semibold text-white">Snapsetech</span>
+          <span className="text-base font-semibold text-white sm:text-lg">
+            Snapsetech
+          </span>
         </Link>
 
         <ul className="hidden gap-2 text-sm text-white sm:flex sm:gap-3">
@@ -71,11 +73,11 @@ export default function Navbar({ copy }: NavbarProps) {
 
       <div
         id="mobile-menu"
-        className={`absolute left-4 right-4 top-[88px] overflow-hidden rounded-2xl border border-white/15 bg-black/80 backdrop-blur-xl transition-all duration-300 sm:hidden ${
-          isOpen ? "max-h-[420px] opacity-100" : "max-h-0 opacity-0"
+        className={`absolute left-3 right-3 top-[calc(env(safe-area-inset-top)+4.75rem)] overflow-hidden rounded-2xl border border-white/15 bg-black/80 backdrop-blur-xl transition-all duration-300 sm:left-4 sm:right-4 sm:top-[88px] sm:hidden ${
+          isOpen ? "max-h-[70vh] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <ul className="flex flex-col gap-2 p-4">
+        <ul className="flex max-h-[70vh] flex-col gap-2 overflow-y-auto p-4">
           {copy.items.map((item) => (
             <li key={item.href}>
               <Link

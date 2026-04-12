@@ -28,7 +28,7 @@ export default function ContactForm({ copy }: ContactFormProps) {
   return (
     <form
       action={formAction}
-      className="rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(16,185,129,0.12),rgba(255,255,255,0.05))] p-8 backdrop-blur-sm sm:p-10"
+      className="rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(16,185,129,0.12),rgba(255,255,255,0.05))] p-6 backdrop-blur-sm sm:p-10"
     >
       <div className="grid gap-5 sm:grid-cols-2">
         <input
@@ -48,7 +48,7 @@ export default function ContactForm({ copy }: ContactFormProps) {
             required
             minLength={2}
             placeholder={copy.namePlaceholder}
-            className="mt-2 w-full rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-emerald-400/40"
+            className="mt-2 w-full rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-base text-white outline-none transition placeholder:text-white/30 focus:border-emerald-400/40"
           />
           <FieldError error={state.fieldErrors?.name} />
         </label>
@@ -61,7 +61,7 @@ export default function ContactForm({ copy }: ContactFormProps) {
             required
             minLength={2}
             placeholder={copy.companyPlaceholder}
-            className="mt-2 w-full rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-emerald-400/40"
+            className="mt-2 w-full rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-base text-white outline-none transition placeholder:text-white/30 focus:border-emerald-400/40"
           />
           <FieldError error={state.fieldErrors?.company} />
         </label>
@@ -73,7 +73,7 @@ export default function ContactForm({ copy }: ContactFormProps) {
             name="email"
             required
             placeholder={copy.emailPlaceholder}
-            className="mt-2 w-full rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-emerald-400/40"
+            className="mt-2 w-full rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-base text-white outline-none transition placeholder:text-white/30 focus:border-emerald-400/40"
           />
           <FieldError error={state.fieldErrors?.email} />
         </label>
@@ -86,7 +86,7 @@ export default function ContactForm({ copy }: ContactFormProps) {
             required
             minLength={20}
             placeholder={copy.messagePlaceholder}
-            className="mt-2 w-full rounded-[1.5rem] border border-white/10 bg-black/25 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-emerald-400/40"
+            className="mt-2 w-full rounded-[1.5rem] border border-white/10 bg-black/25 px-4 py-3 text-base text-white outline-none transition placeholder:text-white/30 focus:border-emerald-400/40"
           />
           <FieldError error={state.fieldErrors?.message} />
         </label>
@@ -99,7 +99,7 @@ export default function ContactForm({ copy }: ContactFormProps) {
         <button
           type="submit"
           disabled={isPending}
-          className="inline-flex rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-70"
+          className="inline-flex w-full justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
         >
           {isPending ? copy.submitting : copy.submit}
         </button>
